@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yahtzee", "Yahtzee\Yahtzee.csproj", "{AFBD3317-62FA-4008-A4F7-33F89D5B8191}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YahtzeeTests", "YahtzeeTests\YahtzeeTests.csproj", "{8D85821E-603C-41F3-85AE-1F24AF034615}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFBD3317-62FA-4008-A4F7-33F89D5B8191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFBD3317-62FA-4008-A4F7-33F89D5B8191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFBD3317-62FA-4008-A4F7-33F89D5B8191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFBD3317-62FA-4008-A4F7-33F89D5B8191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D85821E-603C-41F3-85AE-1F24AF034615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D85821E-603C-41F3-85AE-1F24AF034615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D85821E-603C-41F3-85AE-1F24AF034615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D85821E-603C-41F3-85AE-1F24AF034615}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
