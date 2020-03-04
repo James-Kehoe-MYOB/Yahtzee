@@ -5,49 +5,146 @@ using Xunit;
 
 namespace YahtzeeTests {
     public class YahtzeeTest1 {
+        ScoreCalculator calculator = new ScoreCalculator();
         [Fact]
         public void ChanceReturnsSumOfDice() {
+            //Arrange
+            var input = "1,1,3,3,6";
+
+            //Act
+            var finalscore = calculator.Calculate(input, "chance");
+
+            //Assert
+            Assert.Equal(14, finalscore);
             
         }
 
-        // [Fact]
-        // public void ProperYahtzeeReturnsFifty() {
-        //     
-        // }
-        //
-        // [Fact]
-        // public void ImproperYahtzeeReturnsZero() {
-        //     
-        // }
-        //
-        // [Fact]
-        // public void OnesReturnsOnes() {
-        //     
-        // }
-        //
-        // [Fact]
-        // public void TwosReturnsTwos() {
-        //     
-        // }
-        //
-        // [Fact]
-        // public void ThreesReturnsThrees() {
-        //     
-        // }
-        //
-        // [Fact]
-        // public void FoursReturnsFours() {
-        //     
-        // }
-        //
-        // [Fact]
-        // public void FivesReturnsFives() {
-        //     
-        // }
-        //
-        // [Fact]
-        // public void SixesReturnsSixes() {
-        //     
-        // }
+        [Fact]
+        public void ProperYahtzeeReturnsFifty() {
+            //Arrange
+            var input = "1,1,1,1,1";
+            
+            //Act
+            var finalscore = calculator.Calculate(input, "yahtzee");
+            
+            //Assert
+            Assert.Equal(50, finalscore);
+        }
+        
+        
+        [Fact]
+        public void ImproperYahtzeeReturnsZero() {
+            var input = "1,1,3,1,4";
+
+            var finalscore = calculator.Calculate(input, "yahtzee");
+            
+            Assert.Equal(0, finalscore);
+        }
+        
+        [Fact]
+        public void NumberCategoriesReturnTotalOfGivenNumber() {
+            var input = "1,1,2,4,4";
+            var input2 = "3,5,5,5,6";
+
+            var finalscore1 = calculator.Calculate(input, "ones");
+            var finalscore2 = calculator.Calculate(input, "twos");
+            var finalscore3 = calculator.Calculate(input2, "threes");
+            var finalscore4 = calculator.Calculate(input, "fours");
+            var finalscore5 = calculator.Calculate(input2, "fives");
+            var finalscore6 = calculator.Calculate(input2, "sixes");
+            
+            Assert.Equal(2, finalscore1);
+            Assert.Equal(2, finalscore2);
+            Assert.Equal(3, finalscore3);
+            Assert.Equal(8, finalscore4);
+            Assert.Equal(15, finalscore5);
+            Assert.Equal(6, finalscore6);
+            
+        }
+
+        [Fact]
+        public void PairReturnsSumOfHighestPair() {
+            var input = "3,3,3,4,4";
+            var input2 = "1,2,3,5,5";
+
+            var finalscore = calculator.Calculate(input, "pair");
+            var finalscore2 = calculator.Calculate(input2, "pair");
+            
+            Assert.Equal(8, finalscore);
+            Assert.Equal(10, finalscore2);
+        }
+        
+        [Fact]
+        public void TwoPairsReturnsSumofTwoHighestPairs() {
+            var input = "1,1,2,3,3";
+
+            var finalscore = calculator.Calculate(input, "two pairs");
+            
+            Assert.Equal(8, finalscore);
+        }
+
+        [Fact]
+        public void ThreeOfAKindReturnsSumOfSameNumber() {
+            var input = "3,3,3,4,5";
+            var input2 = "3,3,4,5,6";
+            var input3 = "3,3,3,3,1";
+            
+            var finalscore = calculator.Calculate(input, "three of a kind");
+            var finalscore2 = calculator.Calculate(input2, "three of a kind");
+            var finalscore3 = calculator.Calculate(input3, "three of a kind");
+
+            Assert.Equal(9, finalscore);
+            Assert.Equal(0, finalscore2);
+            Assert.Equal(9, finalscore3);
+        }
+
+        [Fact]
+        public void FourOfAKindReturnsSumOfSameNumber() {
+            var input = "2,2,2,2,5";
+            var input2 = "5,5,2,2,2";
+            var input3 = "2,2,2,2,2";
+            
+            var finalscore = calculator.Calculate(input, "four of a kind");
+            var finalscore2 = calculator.Calculate(input2, "four of a kind");
+            var finalscore3 = calculator.Calculate(input3, "four of a kind");
+
+            Assert.Equal(8, finalscore);
+            Assert.Equal(0, finalscore2);
+            Assert.Equal(8, finalscore3);
+        }
+
+        [Fact]
+
+        public void SmallStraightReturnsSumOfSequentialDice() {
+            var input = "1,2,3,4,5";
+
+            var finalscore = calculator.Calculate(input, "small straight");
+            
+            Assert.Equal(15, finalscore);
+        }
+
+        [Fact]
+        public void LargeStraightReturnsSumOfSequentialDice() {
+            var input = "2,3,4,5,6";
+
+            var finalscore = calculator.Calculate(input, "large straight");
+            
+            Assert.Equal(20, finalscore);
+        }
+
+        [Fact]
+        public void FullHouseReturnsSumOfTwoOfAKindAndThreeOfAKind() {
+            var input1 = "1,1,2,2,2";
+            var input2 = "2,2,3,3,4";
+            var input3 = "4,4,4,4,4";
+
+            var finalscore1 = calculator.Calculate(input1, "full house");
+            var finalscore2 = calculator.Calculate(input2, "full house");
+            var finalscore3 = calculator.Calculate(input3, "full house");
+            
+            Assert.Equal(8, finalscore1);
+            Assert.Equal(0, finalscore2);
+            Assert.Equal(0, finalscore3);
+        }
     }
 }
