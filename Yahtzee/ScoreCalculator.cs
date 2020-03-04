@@ -5,7 +5,7 @@ using System.Linq;
 namespace Yahtzee {
     public class ScoreCalculator {
         private const int NUMBER_OF_DICE = 5;
-        
+
         public ScoreCalculator() {
             
         }
@@ -27,14 +27,15 @@ namespace Yahtzee {
         }
         
         public int Calculate(string input, string category) {
+            Category? cat = Parser.CategoryParse(category);
             int points = 0;
             int[] myNums = ConvertScore(input);
             
-            switch (category) {
-                case "chance":
+            switch (cat) {
+                case Category.Chance:
                     points = myNums.Sum();
                     break;
-                case "yahtzee":
+                case Category.Yahtzee:
                     var count = 0;
                     var targetnum = myNums[0];
 
@@ -51,25 +52,25 @@ namespace Yahtzee {
                         points = 0;
                     }
                     break;
-                case "ones":
+                case Category.Ones:
                     points += myNums.Count(i => i == 1);
                     break;
-                case "twos":
+                case Category.Twos:
                     points += myNums.Where(i => i == 2).Sum(i => 2);
                     break;
-                case "threes":
+                case Category.Threes:
                     points += myNums.Where(i => i == 3).Sum(i => 3);
                     break;
-                case "fours":
+                case Category.Fours:
                     points += myNums.Where(i => i == 4).Sum(i => 4);
                     break;
-                case "fives":
+                case Category.Fives:
                     points += myNums.Where(i => i == 5).Sum(i => 5);
                     break;
-                case "sixes":
+                case Category.Sixes:
                     points += myNums.Where(i => i == 6).Sum(i => 6);
                     break;
-                case "pair":
+                case Category.Pair:
                     var orderedNums = myNums.OrderByDescending(i => i);
                     foreach (var num in orderedNums) {
                         var pair = orderedNums.Where(m => m == num);
@@ -79,7 +80,7 @@ namespace Yahtzee {
                         }
                     }
                     break;
-                case "two pairs":
+                case Category.TwoPairs:
                     var orderedNums2 = myNums.OrderByDescending(i => i);
                     int pairs = 0;
                     List<int> pair_vals = new List<int>();
@@ -96,7 +97,7 @@ namespace Yahtzee {
                         
                     }
                     break;
-                case "three of a kind":
+                case Category.ThreeOfAKind:
                     foreach (var num in myNums) {
                         var threeofakind = myNums.Where(m => m == num);
                         if (threeofakind.Count() >= 3) {
@@ -106,7 +107,7 @@ namespace Yahtzee {
                         break;
                     }
                     break;
-                case "four of a kind":
+                case Category.FourOfAKind:
                     foreach (var num in myNums) {
                         var fourofakind = myNums.Where(m => m == num);
                         if (fourofakind.Count() >= 4) {
@@ -116,7 +117,7 @@ namespace Yahtzee {
                         break;
                     }
                     break;
-                case "small straight":
+                case Category.SmallStraight:
                     if (input == "1,2,3,4,5") {
                         points = 15;
                     }
@@ -125,7 +126,7 @@ namespace Yahtzee {
                     }
 
                     break;
-                case "large straight":
+                case Category.LargeStraight:
                     if (input == "2,3,4,5,6") {
                         points = 20;
                     }
@@ -134,7 +135,7 @@ namespace Yahtzee {
                     }
 
                     break;
-                case "full house":
+                case Category.FullHouse:
                     if (myNums.Distinct().Count() == 2) {
                         var ordered = myNums.OrderByDescending(i => i);
                         var firstitem = myNums.Where(m => m == myNums.First());
@@ -142,6 +143,9 @@ namespace Yahtzee {
                             points = myNums.Sum();
                         }
                     }
+                    break;
+                default:
+                    Console.WriteLine("Could not match category");
                     break;
             }
 
