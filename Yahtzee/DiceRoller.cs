@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -10,11 +11,16 @@ namespace Yahtzee {
         }
 
         public void Reroll(string input) {
-            string[] entries = Parser.ToArray(input);
-            for (int i = 0; i < entries.Length; i++) {
-                if (entries[i] != "-") {
-                    _hand[i].Roll();
+            if (Parser.RollParse(input)) {
+                string[] entries = Parser.ToArray(input);
+                for (int i = 0; i < entries.Length; i++) {
+                    if (entries[i] != "-") {
+                        _hand[i].Roll();
+                    }
                 }
+            }
+            else {
+                Console.WriteLine("Cannot Parse Input");
             }
         }
 
