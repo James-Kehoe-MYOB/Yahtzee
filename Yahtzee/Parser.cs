@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Yahtzee {
@@ -8,6 +10,16 @@ namespace Yahtzee {
                 return true;
             }
             return false;
+        }
+
+        public static Category? CategoryParse(string category) {
+            char whitespace = ' ';
+            var catNoWhitespace = category.Replace(" ", string.Empty);
+            if (Category.TryParse(catNoWhitespace, true, out Category myCat)) {
+                return myCat;
+            }
+            return null;
+
         }
 
         public static string[] ToArray(string input) {

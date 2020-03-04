@@ -1,7 +1,7 @@
 namespace Yahtzee {
-    public class RollHandler {
+    public class TurnHandler {
 
-        public RollHandler() {
+        public TurnHandler() {
                 
         }
         
