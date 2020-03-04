@@ -4,8 +4,15 @@ using Xunit;
 
 namespace YahtzeeTests {
     public class DiceTests {
+        private static List<Dice> hand = new List<Dice> {
+            new Dice(),
+            new Dice(),
+            new Dice(),
+            new Dice(),
+            new Dice()
+        };
         
-        DiceRoller diceRoller = new DiceRoller();
+        DiceRoller diceRoller = new DiceRoller(hand);
         [Fact]
         public void CanRollSingleDice() {
             var dice = new Dice();
@@ -24,31 +31,25 @@ namespace YahtzeeTests {
         [Fact]
         public void CanRollManyDiceAtOnce() {
             string input = "1,3,1,4,5";
-            List<Dice> Hand = new List<Dice> {
-                new Dice(),
-                new Dice(),
-                new Dice(),
-                new Dice(),
-                new Dice()
-            };
+            ;
             
             
             List<int> before_values = new List<int> {
-                Hand[0].rolledValue,
-                Hand[1].rolledValue,
-                Hand[2].rolledValue,
-                Hand[3].rolledValue,
-                Hand[4].rolledValue
+                hand[0].rolledValue,
+                hand[1].rolledValue,
+                hand[2].rolledValue,
+                hand[3].rolledValue,
+                hand[4].rolledValue
             };
             
-            diceRoller.Reroll(Hand, input);
+            diceRoller.Reroll(input);
             
             List<int> after_values = new List<int> {
-                Hand[0].rolledValue,
-                Hand[1].rolledValue,
-                Hand[2].rolledValue,
-                Hand[3].rolledValue,
-                Hand[4].rolledValue
+                hand[0].rolledValue,
+                hand[1].rolledValue,
+                hand[2].rolledValue,
+                hand[3].rolledValue,
+                hand[4].rolledValue
             };
             
             Assert.NotEqual(before_values, after_values);
@@ -65,7 +66,7 @@ namespace YahtzeeTests {
                 new Dice {rolledValue = 6}
             };
             
-            diceRoller.Reroll(Hand, input);
+            diceRoller.Reroll(input);
             
             Assert.Equal(4, Hand[2].rolledValue);
             Assert.Equal(6, Hand[4].rolledValue);

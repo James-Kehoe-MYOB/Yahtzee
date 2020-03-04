@@ -3,17 +3,17 @@ using System.Text.RegularExpressions;
 
 namespace Yahtzee {
     public class DiceRoller {
-        private List<Dice> Hand { get; set; }
+        private List<Dice> _hand { get; set; }
         
-        public DiceRoller() {
-            
+        public DiceRoller(List<Dice> hand) {
+            _hand = hand;
         }
 
-        public void Reroll(List<Dice> hand, string input) {
+        public void Reroll(string input) {
             string[] entries = Parser.ToArray(input);
             for (int i = 0; i < entries.Length; i++) {
                 if (entries[i] != "-") {
-                    hand[i].Roll();
+                    _hand[i].Roll();
                 }
             }
         }
