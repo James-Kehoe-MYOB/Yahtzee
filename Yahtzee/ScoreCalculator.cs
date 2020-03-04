@@ -12,7 +12,7 @@ namespace Yahtzee {
 
         private int[] ConvertScore(string input) {
             if (Parser.RollParse(input)) {
-                string[] nums = input.Split(',');
+                string[] nums = Parser.ToArray(input);
                 int[] numsAsInt = new int[5];
                 for (int i = 0; i < numsAsInt.Length; i++) {
                     numsAsInt[i] = Int32.Parse(nums[i]);

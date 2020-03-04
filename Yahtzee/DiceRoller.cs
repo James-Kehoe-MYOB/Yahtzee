@@ -9,8 +9,13 @@ namespace Yahtzee {
             
         }
 
-        public void RollRemainingDice(string input) {
-
+        public void Reroll(List<Dice> hand, string input) {
+            string[] entries = Parser.ToArray(input);
+            for (int i = 0; i < entries.Length; i++) {
+                if (entries[i] != "-") {
+                    hand[i].Roll();
+                }
+            }
         }
 
         
