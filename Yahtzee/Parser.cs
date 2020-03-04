@@ -9,5 +9,10 @@ namespace Yahtzee {
             }
             return false;
         }
+
+        public static string[] ToArray(string input) {
+            string[] nums = input.Split(',');
+            return nums;
+        }
     }
 }

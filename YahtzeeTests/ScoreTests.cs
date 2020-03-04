@@ -4,7 +4,7 @@ using Yahtzee;
 using Xunit;
 
 namespace YahtzeeTests {
-    public class YahtzeeTest1 {
+    public class ScoreTests {
         ScoreCalculator calculator = new ScoreCalculator();
         [Fact]
         public void ChanceReturnsSumOfDice() {
