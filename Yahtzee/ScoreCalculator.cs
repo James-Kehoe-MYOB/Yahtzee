@@ -6,35 +6,19 @@ namespace Yahtzee {
     public static class ScoreCalculator {
         public static List<Category> used_categories = new List<Category>();
 
-        private static int[] ConvertScore(string input) {
-            if (Parser.RollParse(input)) {
-                string[] nums = Parser.ToArray(input);
-                int[] numsAsInt = new int[5];
-                for (int i = 0; i < numsAsInt.Length; i++) {
-                    numsAsInt[i] = Int32.Parse(nums[i]);
-                }
-
-                return numsAsInt;
-            }
-
-            Console.WriteLine("Could not Convert Score");
-            return null;
-
-        }
-        
         public static int Calculate(string input, string category) {
-            Category? cat = Parser.CategoryParse(category);
-            int points = 0;
-            if (cat.HasValue) {
+            var myCategory = Parser.CategoryParse(category);
+            var points = 0;
+            if (myCategory.HasValue) {
                 
-                int[] myNums = ConvertScore(input);
-                var calculations = new Calculations(myNums);
+                int[] inputAsIntArray = ConvertScore(input);
+                var calculations = new Calculations(inputAsIntArray);
 
-                if (used_categories.Contains((Category) cat)) {
-                    Console.WriteLine($"Cannot Reuse Category {cat}");
+                if (used_categories.Contains((Category) myCategory)) {
+                    Console.WriteLine($"Cannot Reuse Category {myCategory}");
                 }
                 else {
-                    switch (cat) {
+                    switch (myCategory) {
                     case Category.Chance:
                         points = calculations.Chance();
                         used_categories.Add(Category.Chance);
@@ -108,5 +92,20 @@ namespace Yahtzee {
             return points;
         }
         
+        
+        private static int[] ConvertScore(string input) {
+            if (Parser.RollParse(input)) {
+                string[] nums = Parser.ToArray(input);
+                int[] numsAsInt = new int[5];
+                for (int i = 0; i < numsAsInt.Length; i++) {
+                    numsAsInt[i] = Int32.Parse(nums[i]);
+                }
+
+                return numsAsInt;
+            }
+
+            Console.WriteLine("Could not Convert Score");
+            return null;
+        }
     }
 }
