@@ -11,7 +11,7 @@ namespace Yahtzee {
             var points = 0;
             if (myCategory.HasValue) {
                 
-                int[] inputAsIntArray = ConvertScore(input);
+                var inputAsIntArray = ConvertScore(input);
                 var calculations = new Calculations(inputAsIntArray);
 
                 if (used_categories.Contains((Category) myCategory)) {
@@ -95,10 +95,10 @@ namespace Yahtzee {
         
         private static int[] ConvertScore(string input) {
             if (Parser.RollParse(input)) {
-                string[] nums = Parser.ToArray(input);
-                int[] numsAsInt = new int[5];
-                for (int i = 0; i < numsAsInt.Length; i++) {
-                    numsAsInt[i] = Int32.Parse(nums[i]);
+                var nums = Parser.ToArray(input);
+                var numsAsInt = new int[5];
+                for (var i = 0; i < numsAsInt.Length; i++) {
+                    numsAsInt[i] = int.Parse(nums[i]);
                 }
 
                 return numsAsInt;
