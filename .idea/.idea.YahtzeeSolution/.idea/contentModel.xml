@@ -10,10 +10,10 @@
     <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
     <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_YahtzeeSolution.1744018179.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
-      <e p=".git/info/exclude" t="IncludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="Yahtzee" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Calculations.cs" t="Include" />
         <e p="Category.cs" t="Include" />
         <e p="Dice.cs" t="Include" />
         <e p="DiceRoller.cs" t="Include" />

@@ -12,13 +12,17 @@ namespace Yahtzee {
             new Dice()
         };
         static DiceRoller dr = new DiceRoller(hand);
-        static ScoreCalculator sc = new ScoreCalculator();
+        //static ScoreCalculator sc = new ScoreCalculator();
         static void Main(string[] args) {
             TestRun();
         }
+        
+        
+        
+        //----Sample Test Run---------------
 
         static void TestRun() {
-            while (sc.used_categories.Count < 15) {
+            while (ScoreCalculator.used_categories.Count < 15) {
                 Console.Write("Roll Dice? ");
                 Console.ReadKey();
                 foreach (var dice in hand) {
@@ -55,7 +59,7 @@ namespace Yahtzee {
                                 $"{hand[2].rolledValue}," +
                                 $"{hand[3].rolledValue}," +
                                 $"{hand[4].rolledValue}";
-                var result = sc.Calculate(values, category);
+                var result = ScoreCalculator.Calculate(values, category);
                 total += result;
                 Console.WriteLine($"\nYour score is: {result}");
             }
