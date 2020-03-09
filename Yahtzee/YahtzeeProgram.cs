@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Yahtzee {
     class YahtzeeProgram {
+        private const int NumberOfCategories = 15;
         private static int total = 0;
         static List<Dice> hand = new List<Dice> {
             new Dice(),
@@ -12,17 +13,14 @@ namespace Yahtzee {
             new Dice()
         };
         static DiceRoller dr = new DiceRoller(hand);
-        //static ScoreCalculator sc = new ScoreCalculator();
         static void Main(string[] args) {
             TestRun();
         }
-        
-        
-        
+
         //----Sample Test Run---------------
 
         static void TestRun() {
-            while (ScoreCalculator.used_categories.Count < 15) {
+            while (ScoreCalculator.used_categories.Count < NumberOfCategories) {
                 Console.Write("Roll Dice? ");
                 Console.ReadKey();
                 foreach (var dice in hand) {

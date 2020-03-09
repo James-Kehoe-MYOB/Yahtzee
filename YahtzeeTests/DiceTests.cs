@@ -31,9 +31,8 @@ namespace YahtzeeTests {
         [Fact]
         public void CanRollManyDiceAtOnce() {
             string input = "1,3,1,4,5";
-            ;
-            
-            
+
+
             List<int> before_values = new List<int> {
                 hand[0].rolledValue,
                 hand[1].rolledValue,

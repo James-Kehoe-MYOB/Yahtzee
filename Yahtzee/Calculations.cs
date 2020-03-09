@@ -78,18 +78,22 @@ namespace Yahtzee {
         }
         
         public int TwoPairs() {
-            var orderedNums2 = myNums.OrderByDescending(i => i);
-            int pairs = 0;
-            List<int> pair_vals = new List<int>();
-            foreach (var num in orderedNums2) {
-                var pair = orderedNums2.Where(m => m == num);
-                            
-                if (pair.Count() > 1 && !pair_vals.Contains(num)) {
-                    if (pairs < 2) {
-                        points += 2 * pair.First();
-                        pairs++;
-                        pair_vals.Add(num);
+            
+            const int requiredPairs = 2;
+            List<int> pairValues = new List<int>();
+            var values = myNums.Distinct();
+            foreach (var value in values) {
+                var valFrequency = myNums.Where(m => m == value);
+                if (valFrequency.Count() == 2) {
+                    if (!pairValues.Contains(value)) {
+                        pairValues.Add(value);
                     }
+                }
+            }
+
+            if (pairValues.Count() == requiredPairs) {
+                foreach (var value in pairValues) {
+                    points += 2 * value;
                 }
             }
 
@@ -102,8 +106,6 @@ namespace Yahtzee {
                 if (threeofakind.Count() >= 3) {
                     points = 3 * threeofakind.First();
                 }
-
-                break;
             }
             return points;
         }

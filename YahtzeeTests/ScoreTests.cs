@@ -5,7 +5,6 @@ using Xunit;
 
 namespace YahtzeeTests {
     public class ScoreTests {
-        //ScoreCalculator calculator = new ScoreCalculator();
         [Fact]
         public void ChanceReturnsSumOfDice() {
             //Arrange
@@ -73,17 +72,26 @@ namespace YahtzeeTests {
         }
         
         [Fact]
-        public void TwoPairsReturnsSumofTwoHighestPairs() {
-            var input = "1,1,2,3,3";
+        public void TwoPairsReturnsSumOfTwoHighestPairs() {
+            var input = "1,1,2,2,3";
 
             var finalscore = ScoreCalculator.Calculate(input, "two pairs");
             
-            Assert.Equal(8, finalscore);
+            Assert.Equal(6, finalscore);
         }
+
+        // [Fact]
+        // public void TwoPairsReturnsZeroWhenOnlyOnePair() {
+        //     var input = "2,3,3,4,5";
+        //
+        //     var finalscore = ScoreCalculator.Calculate(input, "two pairs");
+        //     
+        //     Assert.Equal(0, finalscore);
+        // }
 
         [Fact]
         public void ThreeOfAKindReturnsSumOfSameNumber() {
-            var input = "3,3,3,4,5";
+            var input = "4,3,3,3,5";
 
             var finalscore = ScoreCalculator.Calculate(input, "three of a kind");
 
@@ -92,7 +100,7 @@ namespace YahtzeeTests {
 
         [Fact]
         public void FourOfAKindReturnsSumOfSameNumber() {
-            var input = "2,2,2,2,5";
+            var input = "5,2,2,2,2";
 
             var finalscore = ScoreCalculator.Calculate(input, "four of a kind");
 
